@@ -1,3 +1,5 @@
+package rectangles.src.main.java.example.app;
+
 public class Rectangle {
     private Point bottomLeft;
     private Point topLeft;

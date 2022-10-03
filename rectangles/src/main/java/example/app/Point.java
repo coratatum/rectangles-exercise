@@ -1,3 +1,5 @@
+package example.app;
+
 public class Point {
     private Integer x;
     private Integer y;
