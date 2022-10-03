@@ -1,4 +1,4 @@
-package rectangles.src.main.java.example.app;
+package example.app;
 
 public class Rectangle {
     private Point bottomLeft;
