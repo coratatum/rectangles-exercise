@@ -9,8 +9,18 @@ public class Point {
         this.y = y;
     }
 
-    public Boolean isEqual(Point point2) {
-        if (point2.getX() == x && point2.getY() == y) {
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+
+        if (!(o instanceof Point)) {
+            return false;
+        }
+
+        Point point2 = (Point) o;
+        if (point2.getX().equals(x) && point2.getY().equals(y)) {
             return true;
         } else {
             return false;

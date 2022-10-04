@@ -48,7 +48,18 @@ public class Rectangle {
         return pointOnEdge;
     }
 
-    public Boolean equals(Rectangle r2) {
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+
+        if (!(o instanceof Rectangle)) {
+            return false;
+        }
+
+        Rectangle r2 = (Rectangle) o;
+        
         if (bottomLeft.equals(r2.getBottomLeftPoint()) && topRight.equals(r2.getTopRightPoint())) {
             return true;
         } else {
