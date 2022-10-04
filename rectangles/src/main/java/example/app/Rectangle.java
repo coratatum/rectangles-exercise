@@ -3,10 +3,13 @@ package example.app;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Rectangle {
     private Point bottomLeft;
-    private Point topLeft;
     private Point topRight;
+    private Point topLeft;
     private Point bottomRight;
 
     public Rectangle(Point bottomLeft, Point topRight) {
@@ -26,6 +29,7 @@ public class Rectangle {
 
     /**
      * See if provided point is on the edge of the rectangle
+     * 
      * @param point point to determine if on edge of rectangle
      * @return true if the point is on the edge of the rectangle, false otherwise
      */
@@ -69,10 +73,11 @@ public class Rectangle {
 
     /**
      * Gets points for all four corners of the rectangle
+     * 
      * @return list of all four corner points of the rectangle, no assumed order
      */
     public List<Point> getCorners() {
-        List<Point> allPoints =  new ArrayList<>();
+        List<Point> allPoints = new ArrayList<>();
         allPoints.add(bottomLeft);
         allPoints.add(bottomRight);
         allPoints.add(topRight);
@@ -80,16 +85,17 @@ public class Rectangle {
         return allPoints;
     }
 
-     /**
+    /**
      * True if this rectangle fully contains provided rectangle
+     * 
      * @param r2 rectangle to determine containment of
      * @return true if r2 is contained, false if not
      */
     public boolean contains(Rectangle r2) {
-        if(bottomLeft.getX() <= r2.getBottomLeftPoint().getX()
-          && bottomLeft.getY() <= r2.getBottomLeftPoint().getY()
-          && topRight.getX() >= r2.getTopRightPoint().getX()
-          && topRight.getY() >= r2.getTopRightPoint().getY()) {
+        if (bottomLeft.getX() <= r2.getBottomLeftPoint().getX()
+                && bottomLeft.getY() <= r2.getBottomLeftPoint().getY()
+                && topRight.getX() >= r2.getTopRightPoint().getX()
+                && topRight.getY() >= r2.getTopRightPoint().getY()) {
             return true;
         }
         return false;

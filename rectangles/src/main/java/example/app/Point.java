@@ -1,5 +1,7 @@
 package example.app;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Point {
     private Integer x;
     private Integer y;

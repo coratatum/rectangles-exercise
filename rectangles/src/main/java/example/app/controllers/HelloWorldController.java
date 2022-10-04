@@ -2,6 +2,8 @@ package example.app.controllers;
 
 import java.util.concurrent.atomic.AtomicLong;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -22,8 +24,9 @@ public class HelloWorldController {
     }
 
     @PutMapping("/rectangle-contains")
-    public Boolean rectangleContains(@RequestBody RectangleRequest rectangleRequest) {
-        return false;
+    @ResponseBody
+    public ResponseEntity<Boolean> rectangleContains(@RequestBody RectangleRequest rectangleRequest) {
+        return ResponseEntity.ok().body(false);
     }
 
 }
