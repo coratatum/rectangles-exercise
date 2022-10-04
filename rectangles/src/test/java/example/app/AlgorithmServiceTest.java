@@ -6,6 +6,8 @@ import java.util.Arrays;
 import java.util.List;
 import org.testng.annotations.*;
 
+import example.app.enums.AdjacencyType;
+
 
 
 /**
@@ -107,5 +109,45 @@ public class AlgorithmServiceTest {
         Point expectedVal3 = new Point(3, 1);
         Point expectedVal4 = new Point(3, 2);
         assertTrue(retVal.containsAll(Arrays.asList(expectedVal1, expectedVal2, expectedVal3, expectedVal4)));
+    }
+
+    @Test
+    public void testAdjacency_containedNotAdjacent() {
+        Rectangle r1 = new Rectangle(new Point(0,0), new Point(4, 5));
+        Rectangle r2 = new Rectangle(new Point(0, 1), new Point(4, 3));
+
+        AdjacencyType retVal = service.getAdjacencyType(r1, r2);
+        assertNotNull(retVal);
+        assertEquals(retVal, AdjacencyType.NONE);
+    }
+
+    @Test
+    public void testAdjacency_notAdjacent() {
+        Rectangle r1 = new Rectangle(new Point(0,0), new Point(4, 5));
+        Rectangle r2 = new Rectangle(new Point(5, 1), new Point(7, 5));
+
+        AdjacencyType retVal = service.getAdjacencyType(r1, r2);
+        assertNotNull(retVal);
+        assertEquals(retVal, AdjacencyType.NONE);
+    }
+
+    @Test
+    public void testAdjacency_properAlongX() {
+        Rectangle r1 = new Rectangle(new Point(0,0), new Point(4, 5));
+        Rectangle r2 = new Rectangle(new Point(4, 0), new Point(6, 5));
+
+        AdjacencyType retVal = service.getAdjacencyType(r1, r2);
+        assertNotNull(retVal);
+        assertEquals(retVal, AdjacencyType.PROPER);
+    }
+
+    @Test
+    public void testAdjacency_properAlongY() {
+        Rectangle r1 = new Rectangle(new Point(0,0), new Point(4, 5));
+        Rectangle r2 = new Rectangle(new Point(0, 5), new Point(4, 7));
+
+        AdjacencyType retVal = service.getAdjacencyType(r1, r2);
+        assertNotNull(retVal);
+        assertEquals(retVal, AdjacencyType.PROPER);
     }
 }

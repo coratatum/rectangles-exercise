@@ -98,7 +98,7 @@ public class AlgorithmService {
     private AdjacencyType adjacentOnY(Rectangle r1, Rectangle r2) {
         AdjacencyType adjacencyType = AdjacencyType.NONE;
 
-        Integer maxBottomY = Math.max(r1.getBottomLeftPoint().getY(), r1.getBottomLeftPoint().getY());
+        Integer maxBottomY = Math.max(r1.getBottomLeftPoint().getY(), r2.getBottomLeftPoint().getY());
         Integer minTopY = Math.min(r1.getTopRightPoint().getY(), r2.getTopRightPoint().getY());
 
         if (!maxBottomY.equals(minTopY)) {
