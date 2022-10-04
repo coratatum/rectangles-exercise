@@ -21,7 +21,7 @@ public class Rectangle {
     }
 
     public Integer getWidth() {
-        return bottomLeft.getX() - topRight.getX();
+        return topRight.getX() - bottomLeft.getX();
     }
 
     /**

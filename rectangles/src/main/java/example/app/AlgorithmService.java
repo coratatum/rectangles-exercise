@@ -74,18 +74,20 @@ public class AlgorithmService {
             if (r1.getBottomLeftPoint().getY() < r2.getBottomLeftPoint().getY()) {
                 if (r1.getTopRightPoint().getY() < r2.getTopRightPoint().getY()) {
                     adjacencyType = AdjacencyType.PARTIAL;
-                } else if (r2.getTopRightPoint().getY() <= r1.getTopRightPoint().getY()) {
+                } else {
                     adjacencyType = AdjacencyType.SUBLINE;
                 }
             } else if (r2.getBottomLeftPoint().getY() < r1.getBottomLeftPoint().getY()) {
                 if (r2.getTopRightPoint().getY() < r1.getTopRightPoint().getY()) {
                     adjacencyType = AdjacencyType.PARTIAL;
-                } else if (r1.getTopRightPoint().getY() <= r2.getTopRightPoint().getY()) {
+                } else {
                     adjacencyType = AdjacencyType.SUBLINE;
                 }
             } else if (r1.getBottomLeftPoint().getY().equals(r2.getBottomLeftPoint().getY())) {
                 if (r1.getHeight().equals(r2.getHeight())) {
                     adjacencyType = AdjacencyType.PROPER;
+                } else {
+                    adjacencyType = AdjacencyType.SUBLINE;
                 }
             }
         } else {
@@ -112,18 +114,20 @@ public class AlgorithmService {
             if (r1.getBottomLeftPoint().getX() < r2.getBottomLeftPoint().getX()) {
                 if (r1.getTopRightPoint().getX() < r2.getTopRightPoint().getX()) {
                     adjacencyType = AdjacencyType.PARTIAL;
-                } else if (r2.getTopRightPoint().getX() <= r1.getTopRightPoint().getX()) {
+                } else {
                     adjacencyType = AdjacencyType.SUBLINE;
                 }
             } else if (r2.getBottomLeftPoint().getX() < r1.getBottomLeftPoint().getX()) {
                 if (r2.getTopRightPoint().getX() < r1.getTopRightPoint().getX()) {
                     adjacencyType = AdjacencyType.PARTIAL;
-                } else if (r1.getTopRightPoint().getX() <= r2.getTopRightPoint().getX()) {
+                } else {
                     adjacencyType = AdjacencyType.SUBLINE;
                 }
             } else if (r1.getBottomLeftPoint().getX().equals(r2.getBottomLeftPoint().getX())) {
                 if (r1.getWidth().equals(r2.getWidth())) {
                     adjacencyType = AdjacencyType.PROPER;
+                } else {
+                    adjacencyType = AdjacencyType.SUBLINE;
                 }
             }
         } else {

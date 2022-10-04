@@ -254,7 +254,7 @@ public class AlgorithmServiceTest {
     @Test
     public void testAdjacency_sublineYVersion3() {
         Rectangle r1 = new Rectangle(new Point(0,0), new Point(4, 5));
-        Rectangle r2 = new Rectangle(new Point(0, 4), new Point(2, 7));
+        Rectangle r2 = new Rectangle(new Point(0, 5), new Point(2, 7));
 
         AdjacencyType retVal = service.getAdjacencyType(r1, r2);
         assertNotNull(retVal);
@@ -264,7 +264,7 @@ public class AlgorithmServiceTest {
     @Test
     public void testAdjacency_sublineYVersion4() {
         Rectangle r1 = new Rectangle(new Point(0,0), new Point(4, 5));
-        Rectangle r2 = new Rectangle(new Point(2, 4), new Point(4, 7));
+        Rectangle r2 = new Rectangle(new Point(2, 5), new Point(4, 7));
 
         AdjacencyType retVal = service.getAdjacencyType(r1, r2);
         assertNotNull(retVal);
