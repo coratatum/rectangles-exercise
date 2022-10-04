@@ -77,89 +77,76 @@ public class AlgorithmService {
     }
 
     private AdjacencyType adjacentOnX(Rectangle r1, Rectangle r2) {
-        Rectangle leftRectangle;
-        Rectangle rightRectangle;
         AdjacencyType adjacencyType = AdjacencyType.NONE;
 
-        if (r1.getBottomLeftPoint().getX() == r2.getTopRightPoint().getX()) {
-            leftRectangle = r1;
-            rightRectangle = r2;
-        } else if (r2.getBottomLeftPoint().getX() == r1.getTopRightPoint().getX()) {
-            leftRectangle = r2;
-            rightRectangle = r1;
+        Integer maxLeftX = Math.max(r1.getBottomLeftPoint().getX(), r2.getBottomLeftPoint().getX());
+        Integer minRightX = Math.min(r1.getTopRightPoint().getX(), r2.getTopRightPoint().getX());
+
+        if (!maxLeftX.equals(minRightX)) {
+            return AdjacencyType.NONE;
+        }
+
+        Integer maxBottomY = Math.max(r1.getBottomLeftPoint().getY(), r1.getBottomLeftPoint().getY());
+        Integer minTopY = Math.min(r1.getTopRightPoint().getY(), r2.getTopRightPoint().getY());
+
+        if (maxBottomY < minTopY) {
+            if (r1.getBottomLeftPoint().getY() < r2.getBottomLeftPoint().getY()) {
+                if (r1.getTopRightPoint().getY() < r2.getTopRightPoint().getY()) {
+                    adjacencyType = AdjacencyType.PARTIAL;
+                } else if (r2.getTopRightPoint().getY() <= r1.getTopRightPoint().getY()) {
+                    adjacencyType = AdjacencyType.SUBLINE;
+                }
+            } else if (r2.getBottomLeftPoint().getY() < r1.getBottomLeftPoint().getY()) {
+                if (r2.getTopRightPoint().getY() < r1.getTopRightPoint().getY()) {
+                    adjacencyType = AdjacencyType.PARTIAL;
+                } else if (r1.getTopRightPoint().getY() <= r2.getTopRightPoint().getY()) {
+                    adjacencyType = AdjacencyType.SUBLINE;
+                }
+            } else if (r1.getBottomLeftPoint().getY().equals(r2.getBottomLeftPoint().getY())) {
+                if (r1.getHeight().equals(r2.getHeight())) {
+                    adjacencyType = AdjacencyType.PROPER;
+                }
+            }
         } else {
-            return adjacencyType;
-        }
-
-        /* 
-         * if bottom left point and bottom right point are the same, and both have same height
-         * then the rectangles are Properly Adjacent
-        */
-        if (leftRectangle.getBottomLeftPoint().equals(rightRectangle.getBottomRightPoint())) {
-            if (leftRectangle.getHeight() == rightRectangle.getHeight()) {
-                return AdjacencyType.PROPER;
-            }
-        }
-
-        /*
-         * if bottom left is below bottom right and top left is above bottom right
-         * AND top left is also above top right, then left is a sub-line
-         * ELSE if top left is below top right, then adjacency is Partial
-         */
-        if (leftRectangle.getBottomLeftPoint().getY() <= rightRectangle.getBottomRightPoint().getY() 
-          && leftRectangle.getTopLeftPoint().getY() > rightRectangle.getBottomRightPoint().getY()) {
-            if (leftRectangle.getTopLeftPoint().getY() > rightRectangle.getTopRightPoint().getY()) {
-                adjacencyType = AdjacencyType.SUBLINE;
-            } else {
-                adjacencyType = AdjacencyType.PARTIAL;
-            }
-        } else if (leftRectangle.getTopLeftPoint().getY() >= rightRectangle.getTopRightPoint().getY()
-          && leftRectangle.getBottomLeftPoint().getY() < rightRectangle.getTopLeftPoint().getY()) {
-            if (leftRectangle.getBottomLeftPoint().getY() < rightRectangle.getBottomRightPoint().getY()) {
-                adjacencyType = AdjacencyType.SUBLINE;
-            } else {
-                adjacencyType = AdjacencyType.PARTIAL;
-            }
+            return AdjacencyType.NONE;
         }
 
         return adjacencyType;
     }
 
     private AdjacencyType adjacentOnY(Rectangle r1, Rectangle r2) {
-        Rectangle topRectangle;
-        Rectangle bottomRectangle;
         AdjacencyType adjacencyType = AdjacencyType.NONE;
 
-        if (r1.getBottomLeftPoint().getY() == r2.getTopRightPoint().getY()) {
-            topRectangle = r1;
-            bottomRectangle = r2;
-        } else if (r2.getBottomLeftPoint().getY() == r1.getTopRightPoint().getY()) {
-            topRectangle = r2;
-            bottomRectangle = r1;
+        Integer maxBottomY = Math.max(r1.getBottomLeftPoint().getY(), r1.getBottomLeftPoint().getY());
+        Integer minTopY = Math.min(r1.getTopRightPoint().getY(), r2.getTopRightPoint().getY());
+
+        if (!maxBottomY.equals(minTopY)) {
+            return AdjacencyType.NONE;
+        }
+
+        Integer maxLeftX = Math.max(r1.getBottomLeftPoint().getX(), r2.getBottomLeftPoint().getX());
+        Integer minRightX = Math.min(r1.getTopRightPoint().getX(), r2.getTopRightPoint().getX());
+
+        if (maxLeftX < minRightX) {
+            if (r1.getBottomLeftPoint().getX() < r2.getBottomLeftPoint().getX()) {
+                if (r1.getTopRightPoint().getX() < r2.getTopRightPoint().getX()) {
+                    adjacencyType = AdjacencyType.PARTIAL;
+                } else if (r2.getTopRightPoint().getX() <= r1.getTopRightPoint().getX()) {
+                    adjacencyType = AdjacencyType.SUBLINE;
+                }
+            } else if (r2.getBottomLeftPoint().getX() < r1.getBottomLeftPoint().getX()) {
+                if (r2.getTopRightPoint().getX() < r1.getTopRightPoint().getX()) {
+                    adjacencyType = AdjacencyType.PARTIAL;
+                } else if (r1.getTopRightPoint().getX() <= r2.getTopRightPoint().getX()) {
+                    adjacencyType = AdjacencyType.SUBLINE;
+                }
+            } else if (r1.getBottomLeftPoint().getX().equals(r2.getBottomLeftPoint().getX())) {
+                if (r1.getWidth().equals(r2.getWidth())) {
+                    adjacencyType = AdjacencyType.PROPER;
+                }
+            }
         } else {
-            return adjacencyType;
-        }
-
-        if (topRectangle.getBottomLeftPoint().equals(bottomRectangle.getTopLeftPoint())) {
-            if (topRectangle.getWidth() == bottomRectangle.getWidth()) {
-                return AdjacencyType.PROPER;
-            }
-        }
-
-        if (topRectangle.getBottomLeftPoint().getX() <= bottomRectangle.getTopLeftPoint().getX()
-        && topRectangle.getBottomRightPoint().getX() > bottomRectangle.getTopLeftPoint().getX()) {
-            if (topRectangle.getBottomRightPoint().getX() > bottomRectangle.getTopLeftPoint().getX()) {
-                adjacencyType = AdjacencyType.SUBLINE;
-            } else {
-                adjacencyType = AdjacencyType.PARTIAL;
-            }
-        } else if (topRectangle.getBottomRightPoint().getX() >= bottomRectangle.getTopRightPoint().getX()
-        && topRectangle.getBottomLeftPoint().getX() < bottomRectangle.getTopRightPoint().getX()) {
-            if (topRectangle.getBottomLeftPoint().getX() < bottomRectangle.getTopLeftPoint().getX()) {
-                adjacencyType = AdjacencyType.SUBLINE;
-            } else {
-                adjacencyType = AdjacencyType.PARTIAL;
-            }
+            return AdjacencyType.NONE;
         }
 
         return adjacencyType;
