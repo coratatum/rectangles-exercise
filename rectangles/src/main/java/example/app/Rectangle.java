@@ -59,7 +59,7 @@ public class Rectangle {
         }
 
         Rectangle r2 = (Rectangle) o;
-        
+
         if (bottomLeft.equals(r2.getBottomLeftPoint()) && topRight.equals(r2.getTopRightPoint())) {
             return true;
         } else {
@@ -78,6 +78,21 @@ public class Rectangle {
         allPoints.add(topRight);
         allPoints.add(topLeft);
         return allPoints;
+    }
+
+     /**
+     * True if this rectangle fully contains provided rectangle
+     * @param r2 rectangle to determine containment of
+     * @return true if r2 is contained, false if not
+     */
+    public boolean contains(Rectangle r2) {
+        if(bottomLeft.getX() <= r2.getBottomLeftPoint().getX()
+          && bottomLeft.getY() <= r2.getBottomLeftPoint().getY()
+          && topRight.getX() >= r2.getTopRightPoint().getX()
+          && topRight.getY() >= r2.getTopRightPoint().getY()) {
+            return true;
+        }
+        return false;
     }
 
     public Point getBottomLeftPoint() {
