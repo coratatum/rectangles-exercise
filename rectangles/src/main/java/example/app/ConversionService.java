@@ -1,12 +1,14 @@
 package example.app;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import example.app.controllers.RectangleRequest;
 
 @Service
 public class ConversionService {
-    RectangleValidationService validationService;
+    @Autowired
+    private RectangleValidationService validationService;
 
     public Rectangle createValidRectangle(RectangleRequest.RectangleData rectangleData) {
         Point bottomLeftPoint = new Point(rectangleData.getBottomLeftPoint().getxVal(),

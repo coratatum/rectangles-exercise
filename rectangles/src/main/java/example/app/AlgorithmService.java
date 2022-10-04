@@ -3,12 +3,16 @@ package example.app;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import example.app.enums.AdjacencyType;
 
+@Service
 public class AlgorithmService {
 
     /**
      * Get any intersection points for two provided rectangles.
+     * 
      * @param r1 rectangle 1
      * @param r2 rectangle 2
      * @return list of intersection points, if none, returns empty list
@@ -18,18 +22,21 @@ public class AlgorithmService {
         Integer maxLeftX = Math.max(r1.getBottomLeftPoint().getX(), r2.getBottomLeftPoint().getX());
         Integer minRightX = Math.min(r1.getTopRightPoint().getX(), r2.getTopRightPoint().getX());
 
-        // if maximum left is smaller than minimum right, there is an intersection within x ranges
+        // if maximum left is smaller than minimum right, there is an intersection
+        // within x ranges
         if (maxLeftX < minRightX) {
             Integer maxBottomY = Math.max(r1.getBottomLeftPoint().getY(), r2.getBottomLeftPoint().getY());
             Integer minTopY = Math.min(r1.getTopRightPoint().getY(), r2.getTopRightPoint().getY());
 
-            // if maximum lower val is smaller than the minium top val, there is an intersection in y ranges
+            // if maximum lower val is smaller than the minium top val, there is an
+            // intersection in y ranges
             if (maxBottomY < minTopY) {
                 // get intersection rectangle
                 Point bottomLPoint = new Point(maxLeftX, maxBottomY);
                 Point topRPoint = new Point(minRightX, minTopY);
                 Rectangle intersectionRectangle = new Rectangle(bottomLPoint, topRPoint);
-                // keep only points from intersection rectangle that are on the "rectangle edge" of both r1, r2
+                // keep only points from intersection rectangle that are on the "rectangle edge"
+                // of both r1, r2
                 List<Point> potentialIntersectionPoints = intersectionRectangle.getCorners();
                 for (Point p : potentialIntersectionPoints) {
                     if (r1.isPointOnEdge(p) && r2.isPointOnEdge(p)) {
@@ -44,6 +51,7 @@ public class AlgorithmService {
 
     /**
      * Calculates what type of adjacency, if any, rectangle1 and rectangle 2 have
+     * 
      * @param r1 rectangle 1
      * @param r2 rectangle 2
      * @return Adjacency Type

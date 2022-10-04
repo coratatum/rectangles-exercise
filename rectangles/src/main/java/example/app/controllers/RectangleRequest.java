@@ -20,6 +20,10 @@ public class RectangleRequest {
             @JsonProperty("yVal")
             public int yVal;
 
+            public PointData() {
+                super();
+            }
+
             public PointData(int xVal, int yVal) {
                 this.xVal = xVal;
                 this.yVal = yVal;
@@ -32,7 +36,10 @@ public class RectangleRequest {
             public int getyVal() {
                 return yVal;
             }
+        }
 
+        public RectangleData() {
+            super();
         }
 
         public RectangleData(PointData bottomLeftPoint, PointData topRightPoint) {
@@ -47,6 +54,10 @@ public class RectangleRequest {
         public PointData getTopRightPoint() {
             return topRightPoint;
         }
+    }
+
+    public RectangleRequest() {
+        super();
     }
 
     public RectangleRequest(RectangleData rectangle1, RectangleData rectangle2) {
