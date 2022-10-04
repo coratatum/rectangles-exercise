@@ -150,4 +150,124 @@ public class AlgorithmServiceTest {
         assertNotNull(retVal);
         assertEquals(retVal, AdjacencyType.PROPER);
     }
+
+    @Test
+    public void testAdjacency_partialXVersion1() {
+        Rectangle r1 = new Rectangle(new Point(1,1), new Point(4, 5));
+        Rectangle r2 = new Rectangle(new Point(4, 0), new Point(7, 3));
+
+        AdjacencyType retVal = service.getAdjacencyType(r1, r2);
+        assertNotNull(retVal);
+        assertEquals(retVal, AdjacencyType.PARTIAL);
+    }
+
+    @Test
+    public void testAdjacency_partialXVersion2() {
+        Rectangle r1 = new Rectangle(new Point(1,1), new Point(4, 5));
+        Rectangle r2 = new Rectangle(new Point(4, 2), new Point(7, 6));
+
+        AdjacencyType retVal = service.getAdjacencyType(r1, r2);
+        assertNotNull(retVal);
+        assertEquals(retVal, AdjacencyType.PARTIAL);
+    }
+
+    @Test
+    public void testAdjacency_sublineXVersion1() {
+        Rectangle r1 = new Rectangle(new Point(0,0), new Point(4, 5));
+        Rectangle r2 = new Rectangle(new Point(4, 1), new Point(6, 3));
+
+        AdjacencyType retVal = service.getAdjacencyType(r1, r2);
+        assertNotNull(retVal);
+        assertEquals(retVal, AdjacencyType.SUBLINE);
+    }
+
+    @Test
+    public void testAdjacency_sublineXVersion2() {
+        Rectangle r1 = new Rectangle(new Point(0,0), new Point(4, 5));
+        Rectangle r2 = new Rectangle(new Point(4, -3), new Point(6, 7));
+
+        AdjacencyType retVal = service.getAdjacencyType(r1, r2);
+        assertNotNull(retVal);
+        assertEquals(retVal, AdjacencyType.SUBLINE);
+    }
+    
+    @Test
+    public void testAdjacency_sublineXVersion3() {
+        Rectangle r1 = new Rectangle(new Point(1,1), new Point(4, 5));
+        Rectangle r2 = new Rectangle(new Point(4, 2), new Point(6, 5));
+
+        AdjacencyType retVal = service.getAdjacencyType(r1, r2);
+        assertNotNull(retVal);
+        assertEquals(retVal, AdjacencyType.SUBLINE);
+    }
+
+    @Test
+    public void testAdjacency_sublineXVersion4() {
+        Rectangle r1 = new Rectangle(new Point(1,1), new Point(4, 5));
+        Rectangle r2 = new Rectangle(new Point(4, 1), new Point(7, 3));
+
+        AdjacencyType retVal = service.getAdjacencyType(r1, r2);
+        assertNotNull(retVal);
+        assertEquals(retVal, AdjacencyType.SUBLINE);
+    }
+
+    @Test
+    public void testAdjacency_partialYVersion1() {
+        Rectangle r1 = new Rectangle(new Point(0,4), new Point(5, 7));
+        Rectangle r2 = new Rectangle(new Point(3, 0), new Point(6, 4));
+
+        AdjacencyType retVal = service.getAdjacencyType(r1, r2);
+        assertNotNull(retVal);
+        assertEquals(retVal, AdjacencyType.PARTIAL);
+    }
+
+    @Test
+    public void testAdjacency_partialYVersion2() {
+        Rectangle r1 = new Rectangle(new Point(2,5), new Point(6, 6));
+        Rectangle r2 = new Rectangle(new Point(0, 0), new Point(4, 5));
+
+        AdjacencyType retVal = service.getAdjacencyType(r1, r2);
+        assertNotNull(retVal);
+        assertEquals(retVal, AdjacencyType.PARTIAL);
+    }
+
+    @Test
+    public void testAdjacency_sublineYVersion1() {
+        Rectangle r1 = new Rectangle(new Point(0,0), new Point(5, 3));
+        Rectangle r2 = new Rectangle(new Point(2, 3), new Point(3, 4));
+
+        AdjacencyType retVal = service.getAdjacencyType(r1, r2);
+        assertNotNull(retVal);
+        assertEquals(retVal, AdjacencyType.SUBLINE);
+    }
+
+    @Test
+    public void testAdjacency_sublineYVersion2() {
+        Rectangle r1 = new Rectangle(new Point(0,0), new Point(4, 5));
+        Rectangle r2 = new Rectangle(new Point(2, -3), new Point(3, 0));
+
+        AdjacencyType retVal = service.getAdjacencyType(r1, r2);
+        assertNotNull(retVal);
+        assertEquals(retVal, AdjacencyType.SUBLINE);
+    }
+
+    @Test
+    public void testAdjacency_sublineYVersion3() {
+        Rectangle r1 = new Rectangle(new Point(0,0), new Point(4, 5));
+        Rectangle r2 = new Rectangle(new Point(0, 4), new Point(2, 7));
+
+        AdjacencyType retVal = service.getAdjacencyType(r1, r2);
+        assertNotNull(retVal);
+        assertEquals(retVal, AdjacencyType.SUBLINE);
+    }
+
+    @Test
+    public void testAdjacency_sublineYVersion4() {
+        Rectangle r1 = new Rectangle(new Point(0,0), new Point(4, 5));
+        Rectangle r2 = new Rectangle(new Point(2, 4), new Point(4, 7));
+
+        AdjacencyType retVal = service.getAdjacencyType(r1, r2);
+        assertNotNull(retVal);
+        assertEquals(retVal, AdjacencyType.SUBLINE);
+    }
 }
