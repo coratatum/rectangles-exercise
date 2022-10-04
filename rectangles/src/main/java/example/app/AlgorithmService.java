@@ -7,29 +7,43 @@ import example.app.enums.AdjacencyType;
 import example.app.enums.ContainedType;
 
 public class AlgorithmService {
-    private Rectangle rectangle1;
-    private Rectangle rectangle2;
 
-    public AlgorithmService(Rectangle rectangle1, Rectangle rectangle2) {
-        this.rectangle1 = rectangle1;
-        this.rectangle2 = rectangle2;
+    /**
+     * Get any intersection points for two provided rectangles.
+     * @param r1 rectangle 1
+     * @param r2 rectangle 2
+     * @return list of intersection points, if none, returns empty list
+     */
+    public List<Point> getIntersectionPoints(Rectangle r1, Rectangle r2) {
+        List<Point> intersectionPoints = new ArrayList<>();
+        Integer maxLeftX = Math.max(r1.getBottomLeftPoint().getX(), r2.getBottomLeftPoint().getX());
+        Integer minRightX = Math.min(r1.getTopRightPoint().getX(), r2.getTopRightPoint().getX());
+
+        // if maximum left is smaller than minimum right, there is an intersection within x ranges
+        if (maxLeftX < minRightX) {
+            Integer maxBottomY = Math.max(r1.getBottomLeftPoint().getY(), r2.getBottomLeftPoint().getY());
+            Integer minTopY = Math.min(r1.getTopRightPoint().getY(), r2.getTopRightPoint().getY());
+
+            // if maximum lower val is smaller than the minium top val, there is an intersection in y ranges
+            if (maxBottomY < minTopY) {
+                // get intersection rectangle
+                Point bottomLPoint = new Point(maxLeftX, maxBottomY);
+                Point topRPoint = new Point(minRightX, minTopY);
+                Rectangle intersectionRectangle = new Rectangle(bottomLPoint, topRPoint);
+                // keep only points from intersection rectangle that are on the "rectangle edge" of both r1, r2
+                List<Point> potentialIntersectionPoints = intersectionRectangle.getCorners();
+                for (Point p : potentialIntersectionPoints) {
+                    if (r1.isPointOnEdge(p) && r2.isPointOnEdge(p)) {
+                        intersectionPoints.add(p);
+                    }
+                }
+            }
+        }
+
+        return intersectionPoints;
     }
 
-    public void brainDump() {
-        Point r1Left = rectangle1.getBottomLeftPoint();
-        Point r1Right = rectangle1.getTopRightPoint();
-        Point r2Left = rectangle2.getBottomLeftPoint();
-        Point r2Right = rectangle2.getTopRightPoint();
 
-        Point leftPoint;
-        Point rightPoint;
-
-        Rectangle leftRectangle = rectangle1;
-        Rectangle rightRectangle = rectangle1;
-
-        
-
-    }
 
     /**
      * Get if Rectangle 1 contains Rectangle 2
@@ -149,20 +163,6 @@ public class AlgorithmService {
         }
 
         return adjacencyType;
-    }
-
-    public List<Rectangle> rectanglesFromLeftToRightByLowerLeftCorner() {
-        List<Rectangle> rectanglesByLeftCorner = new ArrayList<>();
-
-        return rectanglesByLeftCorner;
-    }
-
-    public Rectangle getRectangle1() {
-        return rectangle1;
-    }
-
-    public Rectangle getRectangle2() {
-        return rectangle2;
     }
 
 }

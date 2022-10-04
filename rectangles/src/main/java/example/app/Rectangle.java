@@ -24,12 +24,49 @@ public class Rectangle {
         return bottomLeft.getX() - topRight.getX();
     }
 
+    /**
+     * See if provided point is on the edge of the rectangle
+     * @param point point to determine if on edge of rectangle
+     * @return true if the point is on the edge of the rectangle, false otherwise
+     */
+    public Boolean isPointOnEdge(Point point) {
+
+        Boolean pointOnEdge = false;
+        // fixed x, y in range
+        if (point.getX() == bottomLeft.getX() || point.getX() == topRight.getX()) {
+            if (bottomLeft.getY() <= point.getY() && point.getY() <= topRight.getY()) {
+                pointOnEdge = true;
+            }
+        }
+        // fixed y, x in range
+        if (point.getY() == bottomLeft.getY() || point.getY() == topRight.getY()) {
+            if (bottomLeft.getX() <= point.getX() && point.getX() <= topRight.getX()) {
+                pointOnEdge = true;
+            }
+        }
+
+        return pointOnEdge;
+    }
+
     public Boolean equals(Rectangle r2) {
         if (bottomLeft.equals(r2.getBottomLeftPoint()) && topRight.equals(r2.getTopRightPoint())) {
             return true;
         } else {
             return false;
         }
+    }
+
+    /**
+     * Gets points for all four corners of the rectangle
+     * @return list of all four corner points of the rectangle, no assumed order
+     */
+    public List<Point> getCorners() {
+        List<Point> allPoints =  new ArrayList<>();
+        allPoints.add(bottomLeft);
+        allPoints.add(bottomRight);
+        allPoints.add(topRight);
+        allPoints.add(topLeft);
+        return allPoints;
     }
 
     public Point getBottomLeftPoint() {
