@@ -53,4 +53,44 @@ public class RectangleTest {
         assertEquals(retVal.size(), 4);
         assertTrue(retVal.containsAll(Arrays.asList(expectedPoint1, expectedPoint2, expectedPoint3, expectedPoint4)));
     }
+
+    @Test
+    public void testPointOnEdge_notOnEdge() {
+        Point point = new Point(3, 5);
+        
+        boolean retVal = rectangle.isPointOnEdge(point);
+        assertFalse(retVal);
+    }
+
+    @Test
+    public void testPointOnEdge_pointOnLeftEdge() {
+        Point point = new Point(0, 3);
+        
+        boolean retVal = rectangle.isPointOnEdge(point);
+        assertTrue(retVal);
+    }
+
+    @Test
+    public void testPointOnEdge_pointOnTopEdge() {
+        Point point = new Point(2, 7);
+        
+        boolean retVal = rectangle.isPointOnEdge(point);
+        assertTrue(retVal);
+    }
+
+    @Test
+    public void testPointOnEdge_pointOnRightEdge() {
+        Point point = new Point(5, 5);
+        
+        boolean retVal = rectangle.isPointOnEdge(point);
+        assertTrue(retVal);
+    }
+
+    @Test
+    public void testPointOnEdge_pointOnBottomEdge() {
+        Point point = new Point(3, 0);
+
+        boolean retVal = rectangle.isPointOnEdge(point);
+        assertTrue(retVal);
+    }
 }
