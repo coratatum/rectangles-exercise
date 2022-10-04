@@ -43,8 +43,6 @@ public class AlgorithmService {
         return intersectionPoints;
     }
 
-
-
     /**
      * Get if Rectangle 1 contains Rectangle 2
      * @param r1 rectangle 1
