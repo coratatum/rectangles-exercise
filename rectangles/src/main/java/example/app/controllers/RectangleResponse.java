@@ -18,7 +18,7 @@ public class RectangleResponse {
 
     @JsonProperty("intersectionPoints")
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public List<PointData> points;
+    public List<PointData> intersectionPoints;
 
     public static class PointData {
         @JsonProperty("xVal")
@@ -65,10 +65,10 @@ public class RectangleResponse {
     }
 
     public List<PointData> getPoints() {
-        return points;
+        return intersectionPoints;
     }
 
     public void setPoints(List<PointData> points) {
-        this.points = points;
+        this.intersectionPoints = points;
     }
 }

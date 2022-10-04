@@ -13,6 +13,7 @@ import org.testng.annotations.Test;
 
 import example.app.controllers.RectangleRequest;
 import example.app.controllers.RectangleResponse;
+import example.app.enums.AdjacencyType;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class RectangleIT extends AbstractTestNGSpringContextTests {
@@ -101,6 +102,35 @@ public class RectangleIT extends AbstractTestNGSpringContextTests {
         if (rectangleResponse != null) {
             assertFalse(rectangleResponse.isRectangle1ContainsRectangle2());
             assertFalse(rectangleResponse.isRectangle2ContainsRectangle1());
+        }
+    }
+
+    @Test
+    public void getAdjacencyType_Proper() throws Exception {
+        RectangleRequest.RectangleData rectangleData1 = new RectangleRequest.RectangleData(
+                new RectangleRequest.RectangleData.PointData(0, 0),
+                new RectangleRequest.RectangleData.PointData(5, 5));
+
+        RectangleRequest.RectangleData rectangleData2 = new RectangleRequest.RectangleData(
+                new RectangleRequest.RectangleData.PointData(5, 0),
+                new RectangleRequest.RectangleData.PointData(7, 5));
+
+        RectangleRequest rectangleRequest = new RectangleRequest(rectangleData1, rectangleData2);
+
+        RequestEntity<RectangleRequest> request = RequestEntity.put(template.getRootUri() + "/rectangles/adjacency")
+                .body(rectangleRequest);
+        ResponseEntity<RectangleResponse> response = template.exchange(
+                request,
+                RectangleResponse.class);
+
+        assertNotNull(response);
+        assertEquals(response.getStatusCode(), HttpStatus.OK);
+        RectangleResponse rectangleResponse = response.getBody();
+        assertNotNull(rectangleResponse);
+        if (rectangleResponse != null) {
+            String adjecencyOfRectangles = rectangleResponse.getAdjecencyOfRectangles();
+            assertNotNull(adjecencyOfRectangles);
+            assertEquals(adjecencyOfRectangles, AdjacencyType.PROPER.toString());
         }
     }
 
