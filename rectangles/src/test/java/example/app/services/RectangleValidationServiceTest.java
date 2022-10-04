@@ -1,4 +1,4 @@
-package example.app;
+package example.app.services;
 
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -15,19 +15,19 @@ public class RectangleValidationServiceTest {
 
     @Test
     public void testRectangleValidation_isValid() {
-        Rectangle rectangle = new Rectangle(new Point(0,0), new Point(3,4));
+        Rectangle rectangle = new Rectangle(new Point(0, 0), new Point(3, 4));
         service.validateRectangle(rectangle);
     }
-    
+
     @Test(expectedExceptions = InvalidRectangleException.class)
     public void testRectangleValidation_isNotValid_samePoint() {
-        Rectangle rectangle = new Rectangle(new Point(0, 0), new Point(0,0));
+        Rectangle rectangle = new Rectangle(new Point(0, 0), new Point(0, 0));
         service.validateRectangle(rectangle);
     }
 
     @Test(expectedExceptions = InvalidRectangleException.class)
     public void testRectangleValidation_isNotValid_incorrectOrder() {
-        Rectangle rectangle = new Rectangle(new Point(5, 8), new Point(0,0));
+        Rectangle rectangle = new Rectangle(new Point(5, 8), new Point(0, 0));
         service.validateRectangle(rectangle);
     }
 }

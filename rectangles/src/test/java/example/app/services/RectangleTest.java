@@ -1,4 +1,4 @@
-package example.app;
+package example.app.services;
 
 import static org.testng.Assert.*;
 
@@ -34,7 +34,7 @@ public class RectangleTest {
 
     @Test
     public void testContains_intersectsDoesNotContain() {
-        Rectangle r2 = new Rectangle(new Point(1,1), new Point (6, 8));
+        Rectangle r2 = new Rectangle(new Point(1, 1), new Point(6, 8));
 
         boolean retVal = rectangle.contains(r2);
         assertFalse(retVal);
@@ -57,7 +57,7 @@ public class RectangleTest {
     @Test
     public void testPointOnEdge_notOnEdge() {
         Point point = new Point(3, 5);
-        
+
         boolean retVal = rectangle.isPointOnEdge(point);
         assertFalse(retVal);
     }
@@ -65,7 +65,7 @@ public class RectangleTest {
     @Test
     public void testPointOnEdge_pointOnLeftEdge() {
         Point point = new Point(0, 3);
-        
+
         boolean retVal = rectangle.isPointOnEdge(point);
         assertTrue(retVal);
     }
@@ -73,7 +73,7 @@ public class RectangleTest {
     @Test
     public void testPointOnEdge_pointOnTopEdge() {
         Point point = new Point(2, 7);
-        
+
         boolean retVal = rectangle.isPointOnEdge(point);
         assertTrue(retVal);
     }
@@ -81,7 +81,7 @@ public class RectangleTest {
     @Test
     public void testPointOnEdge_pointOnRightEdge() {
         Point point = new Point(5, 5);
-        
+
         boolean retVal = rectangle.isPointOnEdge(point);
         assertTrue(retVal);
     }

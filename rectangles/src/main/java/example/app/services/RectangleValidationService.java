@@ -1,9 +1,12 @@
-package example.app;
+package example.app.services;
 
 import org.springframework.stereotype.Service;
 
 import example.app.errors.InvalidRectangleException;
 
+/**
+ * Service to ensure a given Rectangle is valid
+ */
 @Service
 public class RectangleValidationService {
 

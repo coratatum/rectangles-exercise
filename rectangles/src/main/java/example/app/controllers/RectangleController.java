@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import example.app.AlgorithmService;
-import example.app.ConversionService;
-import example.app.Rectangle;
+import example.app.services.AlgorithmService;
+import example.app.services.ConversionService;
+import example.app.services.Rectangle;
 
 @Controller
 @RequestMapping("rectangles")
