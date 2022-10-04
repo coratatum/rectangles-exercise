@@ -1,5 +1,5 @@
 package example.app.enums;
 
 public enum ContainedType {
-    CONTAINED, INTERSECTION
+    CONTAINED, INTERSECTION, NONE
 }

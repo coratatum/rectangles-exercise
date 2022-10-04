@@ -6,8 +6,7 @@ import org.testng.annotations.*;
 /**
  * Unit test for simple App.
  */
-public class AppTest 
-{
+public class AlgorithmServiceTest {
     /**
      * Rigorous Test :-)
      */

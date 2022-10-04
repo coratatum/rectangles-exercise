@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import example.app.enums.AdjacencyType;
+import example.app.enums.ContainedType;
 
 public class AlgorithmService {
     private Rectangle rectangle1;
@@ -26,10 +27,32 @@ public class AlgorithmService {
         Rectangle leftRectangle = rectangle1;
         Rectangle rightRectangle = rectangle1;
 
-        //contains
+        
 
     }
 
+    /**
+     * Get if Rectangle 1 contains Rectangle 2
+     * @param r1 rectangle 1
+     * @param r2 rectangle 2
+     * @return ContainedType of Contained or None
+     */
+    public ContainedType getContainedType(Rectangle r1, Rectangle r2) {
+        if(r1.getBottomLeftPoint().getX() <= r2.getBottomLeftPoint().getX()
+          && r1.getBottomLeftPoint().getY() <= r2.getBottomLeftPoint().getY()
+          && r1.getTopRightPoint().getX() >= r2.getTopRightPoint().getX()
+          && r1.getTopRightPoint().getY() >= r2.getTopRightPoint().getY()) {
+            return ContainedType.CONTAINED;
+        }
+        return ContainedType.NONE;
+    }
+
+    /**
+     * Calculates what type of adjacency, if any, rectangle1 and rectangle 2 have
+     * @param r1 rectangle 1
+     * @param r2 rectangle 2
+     * @return Adjacency Type
+     */
     public AdjacencyType getAdjacencyType(Rectangle r1, Rectangle r2) {
         AdjacencyType adjacentOnX = adjacentOnX(r1, r2);
         if (!adjacentOnX.equals(AdjacencyType.NONE)) {
