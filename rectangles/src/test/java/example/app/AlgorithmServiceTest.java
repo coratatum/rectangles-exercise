@@ -76,11 +76,13 @@ public class AlgorithmServiceTest {
 
         List<Point> retVal = service.getIntersectionPoints(r1, r2);
         assertFalse(retVal.isEmpty());
-        assertTrue(retVal.size() == 2);
+        assertTrue(retVal.size() == 4);
 
         Point expectedVal1 = new Point(3, 1);
         Point expectedVal2 = new Point(3, 4);
-        assertTrue(retVal.containsAll(Arrays.asList(expectedVal1, expectedVal2)));
+        Point expectedVal3 = new Point(0, 1);
+        Point expectedVal4 = new Point(0, 4);
+        assertTrue(retVal.containsAll(Arrays.asList(expectedVal1, expectedVal2, expectedVal3, expectedVal4)));
     }
 
     @Test
@@ -93,7 +95,7 @@ public class AlgorithmServiceTest {
         assertTrue(retVal.size() == 4);
 
         Point expectedVal1 = new Point(2, 1);
-        Point expectedVal2 = new Point(2, 3);
+        Point expectedVal2 = new Point(2, 2);
         Point expectedVal3 = new Point(3, 1);
         Point expectedVal4 = new Point(3, 2);
         assertTrue(retVal.containsAll(Arrays.asList(expectedVal1, expectedVal2, expectedVal3, expectedVal4)));
